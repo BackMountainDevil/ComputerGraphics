@@ -17,7 +17,6 @@ import sys
 width = 920     # 画板宽度
 height = 640    # 画版高度
 
-
 XL = XR = YB = YT = -1
 x1 = y1 = x2 = y2 = -1
 iswin = False   # 显示区域是否确定
@@ -53,13 +52,13 @@ def L_B_LineClip(x1, y1, x2, y2, sur):
     u2 = 1
     dx = x2 - x1
     dy = y2 - y1
-    [u1, u2, bool] = clipTest(-dx, x1 - XL, u1, u2)    # 计算左边界交点参数，更新u
+    (u1, u2, bool) = clipTest(-dx, x1 - XL, u1, u2)    # 计算左边界交点参数，更新u
     if bool:
-        [u1, u2, bool] = clipTest(dx, XR - x1, u1, u2)    # 计算右边界交点参数，更新u
+        (u1, u2, bool) = clipTest(dx, XR - x1, u1, u2)    # 计算右边界交点参数，更新u
         if bool:
-            [u1, u2, bool] = clipTest(-dy, y1 - YB, u1, u2)    # 计算下边界交点参数，更新u
+            (u1, u2, bool) = clipTest(-dy, y1 - YB, u1, u2)    # 计算下边界交点参数，更新u
             if bool:
-                [u1, u2, bool] = clipTest(dy, YT - y1, u1, u2)  # 计算上边界交点参数，更新u
+                (u1, u2, bool) = clipTest(dy, YT - y1, u1, u2)  # 计算上边界交点参数，更新u
                 if bool:
                     if u2 < 1:  # 计算终点坐标
                         x2 = (int)(x1 + u2 * dx)
