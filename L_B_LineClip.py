@@ -46,7 +46,7 @@ def clipTest(p, q, u1, u2):
 
 
 # 对在显示区域外的部分线段进行裁剪
-def L_B_LineClip(x1, y1, x2, y2, sur):
+def L_B_LineClip(x1, y1, x2, y2, XL, XR, YB, YT):
     # print('(', x1, ',', y1, ')', '  (', x2, ',', y2, ')')
     u1 = 0
     u2 = 1
@@ -66,7 +66,15 @@ def L_B_LineClip(x1, y1, x2, y2, sur):
                     if u1 > 0:  # 计算起点坐标
                         x1 = (int)(x1 + u1 * dx)
                         y1 = (int)(y1 + u1 * dy)
-                    pygame.draw.line(screen, (255, 255, 0), (x1, y1), (x2, y2))
+                    return (x1, y1, x2, y2)
+                else:
+                    return (-1, -1, -1, -1)
+            else:
+                return (-1, -1, -1, -1)
+        else:
+            return (-1, -1, -1, -1)
+    else:   # -1用来避免TypeError：cannot unpack non-iterable NoneType object
+        return (-1, -1, -1, -1)
 
 
 while True:
@@ -82,8 +90,13 @@ while True:
             if iswin and x2 > 0:    # 显示区域完成后
                 pygame.draw.line(screen, (255, 0, 0), (x1, y1),
                                  (x2, y2))  # 调用内置函数划线画红线
-                L_B_LineClip(x1, y1, x2, y2, screen)
-                x1 = y1 = x2 = y2 = -1
+                (x1, y1, x2, y2) = L_B_LineClip(x1, y1, x2, y2, XL, XR, YB, YT)
+                if x1 > 0:
+                    print('(', x1, ',', y1, ')', '  (', x2, ',', y2, ')')
+                    pygame.draw.line(screen, (255, 255, 0), (x1, y1), (x2, y2))
+                    x1 = y1 = x2 = y2 = -1
+                else:
+                    print("在显示区域之外")
             if (pygame.mouse.get_pressed()[2]):  # 鼠标右键按下，清除线条
                 x1 = y1 = x2 = y2 = -1
                 screen.fill((0, 0, 0))
@@ -99,16 +112,19 @@ while True:
                     pygame.draw.rect(screen, (0, 255, 0),
                                      [x1, y1, x - x1, y - y1], 1)
                 elif x1 > 0 and x2 > 0:
-                    screen.fill((0, 0, 0))
-                    # print('window: (', x1, ',', y1, ')', ' (', x2, ',', y2,
-                    #       ')')
-                    XL = x1
-                    XR = x2
-                    YB = y1
-                    YT = y2
-                    pygame.draw.rect(screen, (0, 255, 0),
-                                     [XL, YB, XR - XL, YT - YB], 1)
-                    x1 = y1 = x2 = y2 = -1  # 重置坐标，开始划线
-                    iswin = True
+                    if (x2 > x1 and y2 > y1):
+                        XL = x1
+                        XR = x2
+                        YB = y1
+                        YT = y2
+                        screen.fill((0, 0, 0))
+                        pygame.draw.rect(screen, (0, 255, 0),
+                                         [XL, YB, XR - XL, YT - YB], 1)
+                        x1 = y1 = x2 = y2 = -1  # 重置坐标，开始划线
+                        iswin = True
+                    else:
+                        print("无效操作！！！请重新画框")
+                        screen.fill((0, 0, 0))
+                        x1 = y1 = x2 = y2 = -1  # 重置坐标，开始划线
     pygame.display.update()
 sys.exit()
