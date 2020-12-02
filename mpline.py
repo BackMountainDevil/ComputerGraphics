@@ -18,8 +18,8 @@ import time
 import pygame
 import sys
 
-width = 920     # 画板宽度
-height = 640    # 画版高度
+width = 920  # 画板宽度
+height = 640  # 画版高度
 isp = False
 x1 = y1 = x2 = y2 = -1
 ps = (x1, y1)
@@ -91,7 +91,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
+            sys.exit(0)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if x1 < 0:
                 x1, y1 = event.pos

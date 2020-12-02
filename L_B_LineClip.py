@@ -97,18 +97,16 @@ if __name__ == '__main__':
             time.sleep(delaytime)
             screen.fill(CBAG)
             if XL > 0:  # 保留显示区域
-                pygame.draw.rect(screen, CFOL,
-                                 [XL, YB, XR - XL, YT - YB], 1)
+                pygame.draw.rect(screen, CFOL, [XL, YB, XR - XL, YT - YB], 1)
             length = len(polygon)
             for i in range(length):
-                pygame.draw.line(screen, CFIL,
-                                 (polygon[i][0], polygon[i][1]),
+                pygame.draw.line(screen, CFIL, (polygon[i][0], polygon[i][1]),
                                  (polygon[i][2], polygon[i][3]))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
+                sys.exit(0)
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if x1 < 0:
                     x1, y1 = event.pos
@@ -123,8 +121,7 @@ if __name__ == '__main__':
                         pygame.display.update()
                         time.sleep(delaytime)
                         print('(', x1, ',', y1, ')', '  (', x2, ',', y2, ')')
-                        pygame.draw.line(screen, CFIL, (x1, y1),
-                                         (x2, y2))
+                        pygame.draw.line(screen, CFIL, (x1, y1), (x2, y2))
                         polygon.append([x1, y1, x2, y2])
                         x1 = y1 = x2 = y2 = -1
                     else:
