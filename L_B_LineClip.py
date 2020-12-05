@@ -159,4 +159,3 @@ if __name__ == '__main__':
                             screen.fill(CBAG)
                             x1 = y1 = x2 = y2 = -1  # 重置坐标，开始划线
         pygame.display.update()
-    sys.exit()

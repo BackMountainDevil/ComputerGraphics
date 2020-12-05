@@ -114,4 +114,3 @@ while True:
         MidPointLine(screen, x1, y1, x2, y2)
         x1 = y1 = x2 = y2 = -1
     pygame.display.update()
-sys.exit()
