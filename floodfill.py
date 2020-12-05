@@ -56,15 +56,19 @@ def FloodFill(surface, pixel, newColor, boundaryColor):
     s.push(pixel)
     while (not s.isEmpty()):
         pixel = s.pop()  # 出栈
-        if ((surface.get_at(pixel) != newColor)
-                and (surface.get_at(pixel) != boundaryColor)):  # 颜色和边界判断
-            surface.set_at(pixel, newColor)  # 着色
-            px = pixel[0]
-            py = pixel[1]
-            s.push((px - 1, py))  # 入栈
-            s.push((px, py + 1))
-            s.push((px + 1, py))
-            s.push((px, py - 1))
+        try:
+            if ((surface.get_at(pixel) != newColor)
+                    and (surface.get_at(pixel) != boundaryColor)):  # 颜色和边界判断
+                surface.set_at(pixel, newColor)  # 着色
+                px = pixel[0]
+                py = pixel[1]
+                s.push((px - 1, py))  # 入栈
+                s.push((px, py + 1))
+                s.push((px + 1, py))
+                s.push((px, py - 1))
+        except Exception as e:
+            print("温馨提示： ", e, "， 请按照凸多边形要求取点")
+            sys.exit(0)
 
 
 # 颜色设置
