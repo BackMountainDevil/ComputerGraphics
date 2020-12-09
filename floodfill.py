@@ -60,6 +60,7 @@ def FloodFill(surface, pixel, newColor, boundaryColor):
             if ((surface.get_at(pixel) != newColor)
                     and (surface.get_at(pixel) != boundaryColor)):  # 颜色和边界判断
                 surface.set_at(pixel, newColor)  # 着色
+                pygame.display.update()  # 一个点更新一次画面，会耗费较大时间，不需要可注释掉
                 px = pixel[0]
                 py = pixel[1]
                 s.push((px - 1, py))  # 入栈
