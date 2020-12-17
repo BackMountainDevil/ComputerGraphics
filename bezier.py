@@ -16,6 +16,7 @@ import pygame
 from pygame.locals import K_SPACE
 import sys
 import numpy as np
+import time
 LINECOLOR = (29, 244, 255)  # 颜色设置
 POINTCLOLOR = (0, 150, 150)
 BACKYCOLOR = (255, 212, 238)
@@ -72,6 +73,8 @@ while True:
                 for i in range(len(xx) - 1):
                     pygame.draw.line(screen, LINECOLOR, (xx[i], yy[i]),
                                      (xx[i + 1], yy[i + 1]), LINEWIDTH)
+                    time.sleep(0.01)
+                    pygame.display.update()
                 print("R")
             else:  # 鼠标其它键按下时画点纪录
                 x, y = event.pos
