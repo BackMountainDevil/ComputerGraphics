@@ -8,10 +8,12 @@
 @Contact :  191615342@qq.com
 @License :  GPL 3.0
 @Desc    :  贝塞尔曲线
-            用鼠标确定几个点，画出由这些点确定的贝塞尔曲线
+            用鼠标左键确定几个点，右键后画出由这些点确定的贝塞尔曲线
+            按下空格后重新开始取点
             https://zhuanlan.zhihu.com/p/203408475
 '''
 import pygame
+from pygame.locals import K_SPACE
 import sys
 import numpy as np
 LINECOLOR = (29, 244, 255)  # 颜色设置
@@ -76,5 +78,9 @@ while True:
                 pygame.draw.circle(screen, POINTCLOLOR, (x, y), 3, 0)
                 points.append([x, y])
                 print("L")
+        # 按下空格重新开始取点
+        if event.type == pygame.KEYDOWN and pygame.key.get_pressed()[K_SPACE]:
+            screen.fill(BACKYCOLOR)
+            points.clear()
 
     pygame.display.update()
