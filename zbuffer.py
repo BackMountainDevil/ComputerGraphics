@@ -16,7 +16,6 @@ LINECOLOR = (29, 244, 255)  # 颜色设置
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
-LIGHTBLUE = (0, 10, 200)
 BACKYCOLOR = (255, 212, 238)
 LINEWIDTH = 3  # 线宽
 
@@ -90,7 +89,7 @@ while True:
     pygame.draw.polygon(screen, BLUE, points[2], 1)
     x = int((points[2][0][0] + points[2][1][0] + points[2][2][0]) / 3)
     y = int((points[2][0][1] + points[2][1][1] + points[2][2][1]) / 3)
-    FloodFill(screen, (x, y), LIGHTBLUE, BLUE, RED)
+    FloodFill(screen, (x, y), BLUE, BLUE, RED)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
