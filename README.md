@@ -1,5 +1,6 @@
 # ComputerGraphics
 Computer Graphics 计算机图形学 python3(pygame模块)实现
+2020/12/27结束，全部代码已经同步到Gitee[ Kearney / ComputerGraphics ](https://gitee.com/anidea/ComputerGraphics)
 # 二维图形生成
 ## 直线生成算法
 - 数值微分法
